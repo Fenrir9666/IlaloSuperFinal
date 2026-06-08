@@ -1,27 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Confirmación de Compra</title>
+    <title>Orden Confirmada</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
-<body>
-<div class="container mt-5 text-center">
-    <div class="alert alert-success">
-        <h2>¡Compra realizada con éxito!</h2>
-        <p>Tu pedido <strong>#<span th:text="${pedido.id}"></span></strong> 
-           ha sido procesado correctamente.</p>
-        <p>Total pagado: <strong>$<span th:text="${pedido.total}"></span></strong></p>
+<body class="container mt-5">
+
+    <h1>TIENDITA ITQ</h1>
+    <p>¡Tu orden ha sido procesada con éxito! Presenta este ticket para retirar tus productos.</p>
+    
+    <hr/>
+
+    <!-- Datos del Pedido -->
+    <p><strong>NÚMERO DE ORDEN:</strong> #<span th:text="${pedido.id}">11</span></p>
+    <p><strong>FECHA EMISIÓN:</strong> <span th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">08/06/2026 16:16</span></p>
+    <p><strong>Estado:</strong> <span th:text="${pedido.estado}">PENDIENTE</span></p>
+
+    <!-- Datos del Cliente -->
+    <h3>Datos del Cliente</h3>
+    <p><strong>Nombre:</strong> <span th:text="${pedido.usuario.nombre}">Usuario</span></p>
+    <p><strong>Email:</strong> <span th:text="${pedido.usuario.email}">email@gmail.com</span></p>
+
+    <!-- Tabla de Artículos -->
+    <h3>Artículos Solicitados</h3>
+    <table class="table table-borderless w-50">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th class="text-center">Cant.</th>
+                <th class="text-end">Precio Unit.</th>
+                <th class="text-end">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="detalle : ${pedido.detalles}">
+                <td th:text="${detalle.producto.nombre}">Producto</td>
+                <td th:text="${detalle.cantidad}" class="text-center">1</td>
+                <td th:text="'$' + ${#numbers.formatDecimal(detalle.precioUnitario, 1, 2)}" class="text-end">$0.00</td>
+                <td th:text="'$' + ${#numbers.formatDecimal(detalle.cantidad * detalle.precioUnitario, 1, 2)}" class="text-end">$0.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Manejo y Gestión de Envío: $15.00</p>
+    
+    <!-- Total Calculado (Productos + Envió) -->
+    <h2>Total a Pagar: $<span th:text="${#numbers.formatDecimal(pedido.total + 15, 1, 2)}">0.00</span></h2>
+
+    <!-- Sección de Botones y Acciones -->
+    <div class="mt-4 gap-2">
+        
+        <!-- 1. Formulario del Botón: Solo aparece si el estado es 'Pendiente' -->
+        <form th:if="${pedido.estado == 'Pendiente'}" th:action="@{/pedido/confirmar-pago/{id}(id=${pedido.id})}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-success fw-bold">Confirmar Pago</button>
+        </form>
+
+        <!-- Mensaje de éxito si ya fue procesado -->
+        <div th:if="${pedido.estado == 'Procesado'}" class="alert alert-success d-inline-block py-2 px-3 m-0">
+            ¡Pago Realizado con Éxito!
+        </div>
+
+        <br><br>
+        
+        <!-- Enlaces de navegación del pie de página -->
+        <a th:href="@{/}" class="text-primary me-2">Volver al Inicio</a>
+        <a th:href="@{/pedido/pdf/{id}(id=${pedido.id})}" class="text-primary me-2" th:if="${pedido.estado == 'Procesado'}">Descargar Ticket PDF</a>
+        <a th:href="@{/pedido/historial}" class="text-primary">Ver Historial de Compras</a>
     </div>
 
-    <div class="mt-4">
-        <a th:href="@{/pedido/historial}" class="btn btn-primary">
-            Ver Historial de Pedidos
-        </a>
-        <a th:href="@{/}" class="btn btn-secondary">
-            Volver al Inicio
-        </a>
-    </div>
-</div>
 </body>
 </html>
+

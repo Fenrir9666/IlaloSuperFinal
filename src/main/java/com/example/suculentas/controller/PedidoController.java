@@ -33,24 +33,41 @@ public class PedidoController {
         this.carritoService = carritoService;
     }
 
-    // Procesar compra
-   @PostMapping("/procesar")
-public String procesarCompra(@AuthenticationPrincipal Usuario usuario, Model model) {
-    Carrito carrito = carritoService.obtenerCarritoActivo(usuario);
-    List<CarritoDetalle> detallesCarrito = carritoService.obtenerDetalles(carrito);
+    // 1. Recibe la acción del carrito, crea el pedido como "Pendiente" y redirige al visor GET
+    @PostMapping("/procesar")
+    public String procesarCompra(@AuthenticationPrincipal Usuario usuario) {
+        Carrito carrito = carritoService.obtenerCarritoActivo(usuario);
+        List<CarritoDetalle> detallesCarrito = carritoService.obtenerDetalles(carrito);
 
-    Pedido pedido = pedidoService.crearPedido(usuario, detallesCarrito);
-    pedidoService.confirmarPedido(pedido);
-    pdfService.generarTicket(pedido);
+        // Nace el pedido (El servicio lo crea inicialmente en "Pendiente")
+        Pedido pedido = pedidoService.crearPedido(usuario, detallesCarrito);
 
-    model.addAttribute("pedido", pedido);
-    
-    // 👈 Cambia esto de "confirmacion" a "confirmar" para que busque el nuevo archivo
-    return "confirmar";  
-}
+        // Redirecciona de forma segura a la URL de confirmación usando su ID
+        return "redirect:/pedido/confirmar/" + pedido.getId();
+    }
 
+    // 2. Muestra la pantalla con los datos del pedido (Sirve para ver estado PENDIENTE o PROCESADO)
+    @GetMapping("/confirmar/{id}")
+    public String mostrarConfirmacion(@PathVariable Long id, Model model) {
+        Pedido pedido = pedidoService.obtenerPorId(id);
+        model.addAttribute("pedido", pedido);
+        return "confirmar"; 
+    }
 
+    // 3. Se activa al pulsar "Confirmar Pago". Modifica el estado en la BD y refresca la misma pantalla
+    @PostMapping("/confirmar-pago/{id}")
+    public String confirmarPago(@PathVariable Long id) {
+        Pedido pedido = pedidoService.obtenerPorId(id);
+        
+        // Cambia el estado a "Procesado" en la base de datos
+        pedidoService.confirmarPedido(pedido);
+        
+        // Genera el ticket PDF con los datos actualizados
+        pdfService.generarTicket(pedido);
 
+        // Redirecciona de vuelta al visor GET para que el usuario vea el cambio reflejado al instante
+        return "redirect:/pedido/confirmar/" + id;
+    }
 
     // Ver historial de pedidos
     @GetMapping("/historial")
@@ -61,15 +78,14 @@ public String procesarCompra(@AuthenticationPrincipal Usuario usuario, Model mod
     }
 
     // Descargar PDF de un pedido
-  @GetMapping("/pdf/{id}")
-public ResponseEntity<byte[]> descargarPdf(@PathVariable Long id) {
-    Pedido pedido = pedidoService.obtenerPorId(id);
-    byte[] pdfBytes = pdfService.generarTicket(pedido);
+    @GetMapping("/pdf/{id}")
+    public ResponseEntity<byte[]> descargarPdf(@PathVariable Long id) {
+        Pedido pedido = pedidoService.obtenerPorId(id);
+        byte[] pdfBytes = pdfService.generarTicket(pedido);
 
-    return ResponseEntity.ok()
-            .header("Content-Disposition", "attachment; filename=ticket_" + id + ".pdf")
-            .contentType(org.springframework.http.MediaType.APPLICATION_PDF)
-            .body(pdfBytes);
-}
-
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=ticket_" + id + ".pdf")
+                .contentType(org.springframework.http.MediaType.APPLICATION_PDF)
+                .body(pdfBytes);
+    }
 }
