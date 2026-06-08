@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de Compra</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5 text-center">
+    <div class="alert alert-success">
+        <h2>¡Compra realizada con éxito!</h2>
+        <p>Tu pedido <strong>#<span th:text="${pedido.id}"></span></strong> 
+           ha sido procesado correctamente.</p>
+        <p>Total pagado: <strong>$<span th:text="${pedido.total}"></span></strong></p>
+    </div>
+
+    <div class="mt-4">
+        <a th:href="@{/pedido/historial}" class="btn btn-primary">
+            Ver Historial de Pedidos
+        </a>
+        <a th:href="@{/}" class="btn btn-secondary">
+            Volver al Inicio
+        </a>
+    </div>
+</div>
+</body>
+</html>

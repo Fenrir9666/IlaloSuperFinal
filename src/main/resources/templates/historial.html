@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Compras</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Historial de Compras</h2>
+
+    <!-- Si el historial está vacío -->
+    <div th:if="${#lists.isEmpty(historial)}" class="alert alert-info">
+        No tienes compras registradas todavía.
+    </div>
+
+    <!-- Tabla de pedidos -->
+    <table th:if="${!#lists.isEmpty(historial)}" class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID Pedido</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Ticket</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pedido : ${historial}">
+                <td th:text="${pedido.id}"></td>
+                <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}"></td>
+                <td th:text="${pedido.estado}"></td>
+                <td>
+                    <a th:href="@{/pedido/pdf/{id}(id=${pedido.id})}" 
+                       class="btn btn-sm btn-primary">
+                        Descargar PDF
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}" class="btn btn-secondary mt-3">Volver al inicio</a>
+</div>
+</body>
+</html>
