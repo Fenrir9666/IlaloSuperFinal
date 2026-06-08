@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Catálogo completo de suculentas y cactus disponibles en Ilaló Suculentas.">
+  
+  <title>Catálogo - Ilaló Suculentas</title>
+  
+  <link rel="icon" th:href="@{/img/logoSucu.png}" type="image/png">
+
+  <!--!Bootstrap y Bootstrap Icons desde CDN oficial -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- !Estilos propios -->
+  <link rel="stylesheet" th:href="@{/estilos.css}">
+
+  <!-- !Fuente Poppins de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- !HEADER -->
+  <!-- Inyección automática del menú maestro desde index -->
+<header th:replace="~{index :: header-nav}"></header>
+
+
+  <!-- !SECCIÓN PRINCIPAL -->
+  <section class="container my-5">
+    <h1 class="text-center mb-4">Catálogo Completo 🌵</h1>
+    <p class="lead text-center col-md-8 mx-auto">
+      Aquí encontrarás nuestras suculentas y cactus disponibles. Si deseas una planta, escríbenos directamente por WhatsApp.
+    </p>
+
+    <!-- !BUSCADOR -->
+    <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group mb-3 shadow-sm">
+            <span class="input-group-text bg-success text-white border-0">
+              <i class="bi bi-search"></i>
+            </span>
+            <input type="text" id="buscador" class="form-control border-0" placeholder="Busca tu suculenta favorita...">
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--! Botones de filtro rápido por categoría -->
+<!-- BOTONES DE FILTRO RÁPIDO DINÁMICOS -->
+<div class="row justify-content-center my-4">
+    <div class="col-md-10 text-center flex-wrap d-flex justify-content-center gap-2">
+        <!-- Si no hay categoría en la URL, se pinta "Todos" -->
+        <a href="/catalogo" class="btn-filtro" 
+           th:classappend="${param.categoria == null} ? 'activo' : ''">Todos</a>
+        
+        <!-- Si la categoría en la URL coincide, se pinta el botón correspondiente -->
+        <a href="/catalogo?categoria=Echeverias" class="btn-filtro" 
+           th:classappend="${param.categoria != null and param.categoria[0] == 'Echeverias'} ? 'activo' : ''">Echeverias</a>
+        
+        <a href="/catalogo?categoria=Cactus" class="btn-filtro" 
+           th:classappend="${param.categoria != null and param.categoria[0] == 'Cactus'} ? 'activo' : ''">Cactus</a>
+        
+        <a href="/catalogo?categoria=Haworthia" class="btn-filtro" 
+           th:classappend="${param.categoria != null and param.categoria[0] == 'Haworthia'} ? 'activo' : ''">Haworthia</a>
+        
+        <a href="/catalogo?categoria=Lithops" class="btn-filtro" 
+           th:classappend="${param.categoria != null and param.categoria[0] == 'Lithops'} ? 'activo' : ''">Lithops</a>
+        
+        <a href="/catalogo?categoria=Sedum" class="btn-filtro" 
+           th:classappend="${param.categoria != null and param.categoria[0] == 'Sedum'} ? 'activo' : ''">Sedum</a>
+    </div>
+</div>
+
+
+
+    <!-- !CONTENEDOR DINÁMICO -->
+    <div class="row mt-5" id="contenedor-plantas">
+      
+      <!--! Iteración sobre productos -->
+      <div class="col-md-4 mb-4 tarjeta-planta" th:each="producto : ${productos}">
+        <div class="card h-100 shadow-sm">
+          
+          <!--! Imagen dinámica -->
+          <img th:src="@{${producto.imagenUrl}}" class="card-img-top" th:alt="${producto.nombre}">
+
+          <div class="card-body text-center">
+            <h5 class="card-title" th:text="${producto.nombre}">Nombre de la Planta</h5>
+            <p class="card-text" th:text="${producto.descripcion}">Descripción corta.</p>
+
+            <p class="fw-bold text-success" th:text="'$' + ${#numbers.formatDecimal(producto.precio, 1, 2)}">$0.00</p>
+
+            <p class="small text-muted">
+              Tamaño: <span th:text="${producto.tamano}">M</span> | Color: <span th:text="${producto.color}">Verde</span>
+            </p>
+
+            <!-- !Botón WhatsApp -->
+    <!-- !Botón WhatsApp -->
+<a href="#"
+   class="btn btn-success w-100 btn-whatsapp mb-3"
+   th:attr="data-nombre=${producto.nombre},
+   data-precio=${#numbers.formatDecimal(producto.precio,1,2)}">
+   <i class="bi bi-whatsapp"></i> Pedir por WhatsApp
+</a>
+
+<!-- !Formulario de Agregar al Carrito Mejorado -->
+<form th:action="@{/carrito/agregar/{productoId}(productoId=${producto.id})}" method="post" class="w-100">
+    <!-- Fila para la cantidad -->
+    <div class="input-group contenedor-cantidad shadow-sm mb-2">
+        <span class="input-group-text bg-light text-secondary label-cantidad">Cantidad</span>
+        <input type="number" name="cantidad" value="1" min="1" class="form-control text-center input-cantidad">
+    </div>
+    
+    <!-- Botón que ocupa todo el ancho -->
+    <button type="submit" class="btn btn-agregar-carrito w-100 shadow-sm">
+        <i class="bi bi-cart-plus"></i> Agregar al carrito
+    </button>
+</form>
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!--! MENSAJE DE BÚSQUEDA VACÍA -->
+    <div id="sin-resultados" class="text-center mt-5 d-none">
+      <i class="bi bi-emoji-frown fs-1 text-muted"></i>
+      <p class="text-muted mt-2">No encontramos plantas con ese nombre en Ilaló Suculentas...</p>
+    </div>
+  </section>
+
+  <!-- !FOOTER -->
+  <footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container text-center text-md-start">
+      <div class="row">
+        <div class="col-md-4 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-success">Ilaló Suculentas</h5>
+          <p>Llevando un pedacito de naturaleza a tu hogar con suculentas saludables.</p>
+        </div>
+        <div class="col-md-4 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-success">Explora</h5>
+          <p><a th:href="@{/catalogo}" class="text-white text-decoration-none">Catálogo</a></p>
+          <p><a th:href="@{/cuidados}" class="text-white text-decoration-none">Cuidados</a></p>
+          <p><a th:href="@{/contacto}" class="text-white text-decoration-none">Contacto</a></p>
+        </div>
+        <div class="col-md-4 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-success">Ubicación</h5>
+          <p>La Merced - Quito, Ecuador</p>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="text-center">
+        <p>© 2026 Reservados por <strong class="text-success">Alex Vilatuña</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!--! Scripts Bootstrap y personalizados -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/script.js}"></script>
+</body>
+</html>

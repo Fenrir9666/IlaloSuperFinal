@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Guía completa de cuidados para suculentas y cactus.">
+
+  <title>Cuidados - Ilaló Suculentas</title>
+
+  <!-- Favicon -->
+  <link rel="icon" th:href="@{/img/logoSucu.png}" type="image/png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS propio -->
+  <link rel="stylesheet" th:href="@{/estilos.css}">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+   <!-- !HEADER -->
+  <!-- Inyección automática del menú maestro desde index -->
+<header th:replace="~{index :: header-nav}"></header>
+
+  <!-- CONTENIDO -->
+  <section class="container my-5">
+
+    <h1 class="text-center mb-4">
+      Guía de Cuidados 🌱
+    </h1>
+
+    <p class="lead text-center col-md-9 mx-auto">
+      Aquí te dejamos recomendaciones para que tus suculentas y cactus crezcan sanos y hermosos.
+    </p>
+
+    <!-- TARJETAS -->
+    <div class="row mt-5">
+
+      <!-- TARJETA 1 -->
+      <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">☀️ Luz</h3>
+
+          <p>
+            La mayoría de suculentas necesitan mucha luz.
+            Si están dentro de casa, colócalas cerca de una ventana.
+          </p>
+
+          <div class="ratio ratio-16x9 mt-3">
+
+            <iframe src="https://www.youtube.com/embed/OyKst1XW0Io"
+                    title="Video sobre luz"
+                    allowfullscreen>
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TARJETA 2 -->
+      <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">💧 Riego</h3>
+
+          <p>
+            Riega solo cuando la tierra esté completamente seca.
+            Si riegas demasiado, la planta se pudre.
+          </p>
+
+          <div class="ratio ratio-16x9 mt-3">
+
+            <iframe src="https://www.youtube.com/embed/-6A14VEDdAU?si=z-avlkgV9_Ka8pnT"
+                    title="Video sobre riego"
+                    allowfullscreen>
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TARJETA 3 -->
+      <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">🪴 Maceta con drenaje</h3>
+
+          <p>
+            Usa macetas con agujeros abajo.
+            Si no drena, el agua se acumula y mata la planta.
+          </p>
+
+          <div class="ratio ratio-16x9 mt-3">
+
+            <iframe src="https://www.youtube.com/embed/c3CfM6ngUzs?si=QPCW5yKuz02h0BGX"
+                    title="Video sobre drenaje"
+                    allowfullscreen>
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TARJETA 4 -->
+      <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">🌱 Tierra</h3>
+
+          <p>
+            Lo ideal es tierra para cactus con arena o piedras pequeñas.
+            Esto permite que el agua salga rápido.
+          </p>
+
+          <div class="ratio ratio-16x9 mt-3">
+
+            <iframe src="https://www.youtube.com/embed/fBUTiGwV5TY?si=bekTIZQiKkOXh-L0"
+                    title="Video sobre tierra"
+                    allowfullscreen>
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TARJETA 5 -->
+      <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">🐛 Plagas</h3>
+
+          <p>
+            Si ves manchas blancas o bichos pequeños, puede ser cochinilla.
+            Puedes limpiarla con algodón y alcohol.
+          </p>
+
+          <div class="ratio ratio-16x9 mt-3">
+
+            <iframe src="https://www.youtube.com/embed/PVGqgOWbTkw?si=47_Rzb6BHgRDHepV"
+                    title="Video sobre plagas"
+                    allowfullscreen>
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TARJETA 6 -->
+      <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">⚠️ Errores comunes</h3>
+
+          <p>
+            Regar diario, poca luz, macetas sin drenaje o usar tierra muy húmeda.
+            Evita esos errores y tus plantas durarán años.
+          </p>
+
+          <div class="ratio ratio-16x9 mt-3">
+
+            <iframe src="https://www.youtube.com/embed/yLpF_3TIn4k?si=eoXTA9nJ8PD-j8mE"
+                    title="Video sobre errores comunes"
+                    allowfullscreen>
+            </iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BOTÓN WHATSAPP -->
+  <a href="https://wa.me/593979084293"
+     target="_blank"
+     rel="noopener"
+     class="btn btn-success position-fixed bottom-0 end-0 m-4 shadow-lg rounded-circle p-3">
+
+    💬
+
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white pt-5 pb-4">
+
+    <div class="container text-center text-md-start">
+
+      <div class="row">
+
+        <!-- INFO -->
+        <div class="col-md-4 mx-auto mt-3">
+
+          <h5 class="text-uppercase mb-4 fw-bold text-success">
+            Ilaló Suculentas
+          </h5>
+
+          <p>
+            Llevando un pedacito de naturaleza a tu hogar con suculentas y cactus saludables.
+          </p>
+
+        </div>
+
+        <!-- ENLACES -->
+        <div class="col-md-4 mx-auto mt-3">
+
+          <h5 class="text-uppercase mb-4 fw-bold text-success">
+            Explora
+          </h5>
+
+          <p>
+            <a th:href="@{/catalogo}" class="text-white text-decoration-none">
+              Catálogo
+            </a>
+          </p>
+
+          <p>
+            <a th:href="@{/cuidados}" class="text-white text-decoration-none">
+              Cuidados
+            </a>
+          </p>
+
+          <p>
+            <a th:href="@{/contacto}" class="text-white text-decoration-none">
+              Contacto
+            </a>
+          </p>
+
+        </div>
+
+        <!-- UBICACIÓN -->
+        <div class="col-md-4 mx-auto mt-3">
+
+          <h5 class="text-uppercase mb-4 fw-bold text-success">
+            Ubicación
+          </h5>
+
+          <p>📍 La Merced - Quito, Ecuador</p>
+
+          <p>🕒 Lunes a Sábado: 09:00 - 18:00</p>
+
+        </div>
+
+      </div>
+
+      <hr class="mb-4">
+
+      <!-- COPYRIGHT -->
+      <div class="row">
+
+        <div class="col text-center">
+
+          <p class="mb-0">
+            © 2026 Todos los derechos reservados por
+            <strong class="text-success">
+              Alex Vilatuña
+            </strong>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Vinculación del archivo de lógica interactiva JS -->
+<script th:src="@{/script.js}"></script>
+
+</body>
+</html>

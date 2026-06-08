@@ -1,0 +1,755 @@
+
+/*! FUENTES Y VARIABLES (COLORES) */
+
+
+:root {
+  --verde-principal: #2e7d32;
+  --verde-secundario: #81c784;
+  --verde-oscuro: #1b5e20;
+  --crema: #f7f5ef;
+  --gris-texto: #444;
+  --blanco: #ffffff;
+}
+
+/* Fondo general limpio y elegante */
+body {
+  background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.9)),
+              url("img/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "Poppins", sans-serif;
+}
+
+
+/* ! NAVBAR */
+
+
+.mi-nav-personalizada {
+  background: linear-gradient(90deg, var(--verde-oscuro), var(--verde-principal)) !important;
+  padding: 12px 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Logo redondo */
+.navbar-brand img {
+  border-radius: 50%;
+  border: 2px solid var(--verde-secundario);
+  transition: transform 0.3s ease;
+}
+
+/* Hover del logo */
+/* ? Permite que el logo tenga una pequeña animación */
+.navbar-brand:hover img {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* Texto del logo */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--blanco) !important;
+}
+
+/* Links del navbar */
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar .nav-link:hover {
+  color: var(--verde-secundario) !important;
+}
+
+/* Link activo */
+.navbar .nav-link.active {
+  color: var(--blanco) !important;
+  font-weight: 700;
+  border-bottom: 2px solid var(--verde-secundario);
+}
+
+
+/* ! HERO / JUMBOTRON */
+
+/* ? es la sección que da la bienvenida a la página principal */
+.jumbotron-suculenta {
+  background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('img/imgParrafo.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  border-radius: 0 !important;
+  padding: 90px 20px;
+}
+
+.jumbotron-suculenta h1 {
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.jumbotron-suculenta p {
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+  font-size: 1.2rem;
+}
+
+/* Botones del hero */
+.jumbotron-suculenta .btn-success {
+  background-color: var(--verde-principal);
+  border: none;
+  padding: 12px 30px;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.jumbotron-suculenta .btn-success:hover {
+  background-color: var(--verde-oscuro);
+  transform: translateY(-2px);
+}
+
+/* !CARRUSEL - Estilos del contenedor principal del deslizador */
+
+#carouselSuculentas {
+  /* Limita el ancho del carrusel a 900 píxeles */
+  max-width: 900px;
+  /* Centra el carrusel horizontalmente en la página */
+  margin: 0 auto;
+  /* Redondea las esquinas del carrusel con un radio de 18px */
+  border-radius: 18px;
+  /* Corta cualquier contenido (como las fotos) que sobresalga de las esquinas redondeadas */
+  overflow: hidden;
+  /* Elimina cualquier borde que pudiera tener por defecto */
+  border: none;
+}
+
+/* Estilos para las imágenes dentro del carrusel */
+.carrusel-img {
+  /* Define una altura fija de 420px para todas las imágenes */
+  height: 420px;
+  /* Ajusta la imagen para que llene el contenedor sin deformarse (recorta los lados si es necesario) */
+  object-fit: cover;
+}
+
+/* Fondo del caption - La caja que contiene el texto sobre la imagen */
+.fondo-caption {
+  /* Fondo negro con 45% de transparencia para mejorar la lectura del texto */
+  background: rgba(0, 0, 0, 0.45) !important;
+  /* Redondea las esquinas de esta caja de texto */
+  border-radius: 14px;
+  /* Añade un espacio de 15px entre el texto y los bordes de la caja */
+  padding: 15px;
+}
+
+/* Texto del caption - Títulos (h5) y párrafos (p) */
+.carousel-caption h5,
+.carousel-caption p {
+  /* Fuerza el color del texto a blanco */
+  color: white !important;
+  /* Grosor de la fuente en un nivel intermedio/negrita */
+  font-weight: 600;
+  /* Añade una sombra oscura tras las letras para que resalten más */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+
+/* Flechas del carrusel - Iconos de navegación "Anterior" y "Siguiente" */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  /* Fondo circular negro semitransparente para las flechas */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Hace que el fondo sea un círculo perfecto */
+  border-radius: 50%;
+  /* Espaciado interno para darle tamaño al círculo */
+  padding: 18px;
+  /* Ajusta el tamaño de la flecha blanca dentro de su fondo */
+  background-size: 50%;
+}
+
+/* Indicadores - Las pequeñas barras en la parte inferior */
+.carousel-indicators [data-bs-target] {
+  /* Color de fondo blanco para las barritas */
+  background-color: white;
+  /* Las hace un poco transparentes cuando no están seleccionadas */
+  opacity: 0.7;
+}
+
+/* Indicador activo - La barra de la imagen que se está viendo */
+.carousel-indicators .active {
+  /* Hace que la barrita sea totalmente sólida (sin transparencia) */
+  opacity: 1;
+}
+
+
+/* ! TARJETAS DEL CATÁLOGO - Diseño de los productos en venta */
+
+
+.card {
+  /* Quita el borde gris que traen las tarjetas por defecto */
+  border: none;
+  /* Redondea las esquinas de la tarjeta con un radio de 18px */
+  border-radius: 18px;
+  /* Asegura que la imagen o contenido no se salga de las esquinas redondeadas */
+  overflow: hidden;
+  /* Define que cualquier cambio (como el movimiento al pasar el ratón) dure 0.3 segundos */
+  transition: 0.3s;
+}
+
+/* Efecto al pasar el ratón sobre la tarjeta */
+.card:hover {
+  /* Desplaza la tarjeta 6 píxeles hacia arriba para dar sensación de levitación */
+  transform: translateY(-6px);
+  /* Añade una sombra difuminada para darle profundidad (efecto 3D) */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* Imagen superior de la tarjeta */
+.card-img-top {
+  /* Define una altura fija de 260px para que todas las tarjetas midan lo mismo */
+  height: 260px;
+  /* Ajusta la imagen para que se vea completa sin recortarse, manteniendo su proporción */
+  object-fit: contain;
+  /* Fondo blanco para que las macetas o plantas resalten limpiamente */
+  background-color: white;
+  /* Espacio de 10px entre la imagen y el borde de la tarjeta */
+  padding: 10px;
+}
+
+/* Títulos de los productos */
+.card-title {
+  /* Letra en negrita (700) */
+  font-weight: 700;
+  /* Color de texto usando la variable de verde oscuro que definiste */
+  color: var(--verde-oscuro);
+}
+
+/* Estilo del Precio */
+.card-body .fw-bold {
+  /* Aumenta el tamaño del precio a 1.2rem para que destaque */
+  font-size: 1.2rem;
+}
+
+/* Botón de pedir/comprar */
+.card-body .btn-success {
+  /* Redondea las esquinas del botón */
+  border-radius: 12px;
+  /* Texto en negrita nivel 600 */
+  font-weight: 600;
+  /* Aumenta el tamaño del botón con un espaciado interno de 10px */
+  padding: 10px;
+}
+
+
+/* ! INPUT BUSCADOR - Estilos para la barra de búsqueda */
+
+
+.input-group {
+  /* Redondea las esquinas de todo el grupo (input + botón) */
+  border-radius: 14px;
+  /* Asegura que el contenido interno no se salga de las esquinas redondeadas */
+  overflow: hidden;
+}
+
+.input-group input {
+  /* Añade espacio interno para que el texto no esté pegado a los bordes */
+  padding: 12px;
+  /* Define un tamaño de letra estándar (16px aproximadamente) */
+  font-size: 1rem;
+}
+
+
+/* !MAPA - Estilos para el mapa de Google Maps o similar */
+
+
+.contenedor-mapa {
+  /* Corta el mapa para que respete el redondeo de las esquinas */
+  overflow: hidden;
+  /* Redondea las esquinas del contenedor del mapa */
+  border-radius: 18px;
+  /* Añade un borde fino de color verde con mucha transparencia (30%) */
+  border: 2px solid rgba(46, 125, 50, 0.3);
+  /* Elimina espacios extra debajo del mapa para un ajuste perfecto */
+  line-height: 0;
+}
+
+.contenedor-mapa iframe {
+  /* Le da un toque estético quitando un poco de color (20% gris) y subiendo el contraste */
+  filter: grayscale(20%) contrast(110%);
+  /* Hace que el cambio de filtros sea suave al pasar el ratón */
+  transition: 0.3s;
+}
+
+/* Efecto al pasar el ratón sobre el mapa */
+.contenedor-mapa:hover iframe {
+  /* Devuelve el mapa a sus colores originales (0% gris) */
+  filter: grayscale(0%) contrast(100%);
+}
+
+
+/* ! BOTÓN FLOTANTE WHATSAPP - El círculo verde que suele estar abajo a la derecha */
+
+
+a.btn.position-fixed {
+  /* Define el ancho del botón */
+  width: 60px;
+  /* Define el alto del botón (igual al ancho para que sea un círculo) */
+  height: 60px;
+  /* Ajusta el tamaño del icono de WhatsApp dentro del botón */
+  font-size: 1.4rem;
+  /* Usa Flexbox para centrar el icono perfectamente */
+  display: flex;
+  /* Centrado vertical del icono */
+  align-items: center;
+  /* Centrado horizontal del icono */
+  justify-content: center;
+  /* Hace que el botón sea un círculo perfecto */
+  border-radius: 50%;
+  /* Suaviza la animación de aumento de tamaño */
+  transition: 0.3s;
+}
+
+/* Efecto al pasar el ratón sobre el botón de WhatsApp */
+a.btn.position-fixed:hover {
+  /* Hace que el botón crezca un 10% al poner el cursor encima */
+  transform: scale(1.1);
+}
+
+
+/* ! FOOTER - Estilos para el pie de página */
+
+
+footer {
+  /* Color de fondo negro casi puro para el pie de página */
+  background-color: #121212 !important;
+  /* Color de texto blanco */
+  color: white;
+}
+
+footer h5 {
+  /* Separa un poco las letras de los títulos para que se vea más moderno */
+  letter-spacing: 1px;
+  /* Letra muy gruesa para los títulos del footer */
+  font-weight: 800;
+}
+
+/* Enlaces dentro del footer */
+footer a {
+  /* Color blanco con un 80% de opacidad para que no brille tanto como los títulos */
+  color: rgba(255,255,255,0.8);
+}
+
+/* Efecto al pasar el ratón sobre los enlaces del footer */
+footer a:hover {
+  /* Cambia el color al verde secundario de tu marca */
+  color: var(--verde-secundario) !important;
+  /* Hace que el cambio de color sea suave en 0.3 segundos */
+  transition: 0.3s;
+}
+
+
+/* ! SECCIÓN FORMULARIO DE CONTACTO - ILALÓ SUCULENTAS */
+
+/* Contenedor del formulario con efecto cristal translúcido */
+form.col-md-8.mx-auto {
+    background: rgba(247, 245, 239, 0.65); /* Usa tu color --crema con transparencia */
+    backdrop-filter: blur(8px); /* Difumina suavemente las suculentas del fondo */
+    padding: 40px;
+    border-radius: 20px; /* Esquinas redondeadas orgánicas */
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.08); /* Sombra suave verde oscuro */
+    border: 1px solid rgba(129, 199, 132, 0.25); /* Borde sutil verde secundario */
+}
+
+/* Estilo para las etiquetas de texto (Nombre, Correo, etc.) */
+form .form-label {
+    color: var(--verde-oscuro);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+/* Cajas de entrada de datos (Inputs y Textarea) */
+form .form-control {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(46, 125, 50, 0.2); /* Borde verde claro muy suave */
+    border-radius: 12px; /* Redondeo en armonía con tus tarjetas */
+    padding: 12px 16px;
+    color: var(--gris-texto);
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* Efecto cuando el usuario hace clic para escribir */
+form .form-control:focus {
+    background-color: var(--blanco) !important;
+    border-color: var(--verde-principal) !important;
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15) !important; /* Resplandor verde */
+    outline: none;
+}
+
+/* El botón de envío principal */
+form .btn-success {
+    background-color: var(--verde-principal) !important;
+    border: none !important;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease !important;
+}
+
+/* Efecto hover del botón de enviar */
+form .btn-success:hover {
+    background-color: var(--verde-oscuro) !important;
+    transform: translateY(-3px); /* Efecto de levitación */
+    box-shadow: 0 6px 15px rgba(27, 94, 32, 0.3); /* Sombra más intensa al flotar */
+}
+
+
+/* ! ESTILO ANIMADO E INTERACTIVO PARA EL TÍTULO */
+.container.mt-5 h2.text-center.mb-4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    color: var(--verde-oscuro);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 15px;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: default;
+    
+    /* 1. Animación automática al cargar la página */
+    animation: aparecerYFlotar 1.2s ease-out forwards;
+    
+    /* Suaviza cualquier cambio de movimiento o color */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efecto al pasar el ratón por encima del título */
+.container.mt-5 h2.text-center.mb-4:hover {
+    color: var(--verde-principal);
+    text-shadow: 2px 8px 15px rgba(46, 125, 50, 0.2);
+    transform: translateX(-50%) translateY(-4px) scale(1.03); /* Se eleva y crece un poquito */
+}
+
+/* Línea decorativa que reacciona al movimiento del usuario */
+.container.mt-5 h2.text-center.mb-4::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    width: 30%; /* Empieza un poco más corta */
+    height: 4px;
+    background: linear-gradient(90deg, var(--verde-principal), var(--verde-secundario));
+    border-radius: 2px;
+    transition: all 0.4s ease; /* Transición suave para la línea */
+}
+
+/* Cuando pasas el ratón, la línea se expande sutilmente */
+.container.mt-5 h2.text-center.mb-4:hover::after {
+    left: 15%;
+    width: 70%; /* La línea crece hacia los lados */
+    background: linear-gradient(90deg, var(--verde-secundario), var(--verde-principal));
+}
+
+/* 2. Definición del hechizo de animación (Keyframes) */
+@keyframes aparecerYFlotar {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px); /* Viene desde abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); /* Se acomoda en su lugar */
+    }
+}
+
+/* Estilos modernos para los botones de catálogo */
+.btn-filtro {
+    display: inline-block;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2e7d32; /* Verde suculenta */
+    background-color: #ffffff;
+    border: 2px solid #2e7d32;
+    border-radius: 30px; /* Bordes completamente redondeados */
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease; /* Efecto suave de transición */
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse por encima (Hover) */
+.btn-filtro:hover {
+    color: #ffffff;
+    background-color: #2e7d32;
+    transform: translateY(-3px); /* Se eleva sutilmente */
+    box-shadow: 0 6px 12px rgba(46, 125, 50, 0.2); /* Sombra verde */
+}
+
+/* Estado activo / botón seleccionado */
+.btn-filtro.activo {
+    color: #ffffff;
+    background-color: #1b5e20; /* Verde más oscuro */
+    border-color: #1b5e20;
+}
+
+
+/* ==========================================================================
+   ANIMACIONES DE LA BARRA DE NAVEGACIÓN
+   ========================================================================== */
+
+/* Efecto suave para el botón de Iniciar Sesión */
+.navbar-btn-hover { 
+    transition: all 0.2s ease; 
+}
+
+.navbar-btn-hover:hover { 
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: #ffffff !important; 
+}
+
+/* Efecto dinámico para el Carrito Pixel Art */
+.carrito-hover-effect {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+}
+
+.carrito-hover-effect:hover {
+    transform: scale(1.12); /* Crece sutilmente al pasar el mouse */
+    filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.2)); /* Añade un leve destello flotante */
+}
+
+
+/* --- ESTILOS PARA EL BOTÓN DE AGREGAR AL CARRITO --- */
+
+
+/* ==========================================================================
+   DISEÑO DEFINITIVO Y PROFESIONAL PARA EL CATÁLOGO (ILALÓ SUCULENTAS)
+   ========================================================================== */
+
+/* 1. Alineación perfecta de las tarjetas para que midan lo mismo */
+.card.h-100 {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.card-body .card-text {
+    flex-grow: 1 !important; /* Rellena el espacio si la descripción es corta */
+    margin-bottom: 15px !important;
+}
+
+/* 2. Botón de WhatsApp con efecto de elevación */
+.btn-whatsapp {
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    margin-top: auto !important; /* Lo empuja abajo del todo */
+    transition: all 0.3s ease-in-out !important;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2) !important;
+}
+
+/* 3. Selector de cantidad minimalista */
+.contenedor-cantidad {
+    border: 1px solid #e0e0e0 !important;
+    background-color: #f8f9fa !important;
+    border-radius: 10px !important;
+}
+
+/* 4. Botón Agregar al Carrito (Estado Normal: Fondo blanco, borde verde) */
+.btn-agregar-carrito {
+    color: #2e7d32 !important; /* El verde principal de tu marca */
+    background-color: #ffffff !important;
+    border: 2px solid #2e7d32 !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    padding: 10px !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* 5. ¡EL EFECTO HOVER RECOBRADO! (Al pasar el mouse: se vuelve verde sólido) */
+.btn-agregar-carrito:hover {
+    color: #ffffff !important;
+    background-color: #2e7d32 !important;
+    border-color: #2e7d32 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2) !important;
+}
+
+
+
+/* ==========================================================
+   LOGIN MODERNO - ILALÓ SUCULENTAS
+   ========================================================== */
+/* --- ESTILOS PARA EL LOGOTIPO EN LA PÁGINA DE LOGIN --- */
+
+.login-header-brand {
+    font-family: 'Poppins', sans-serif; /* Usa la misma fuente de tu index */
+}
+
+/* Contenedor del logotipo e icono */
+.branding-wrapper {
+    padding: 5px 0;
+}
+
+/* Estilo para el texto del título emulando el Navbar */
+.brand-text-title {
+    color: #2e7d32; /* El verde principal de tu marca */
+    font-weight: 700; /* Peso grueso como el de tu menú */
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+}
+
+/* Efecto circular e interactivo para el logo de la suculenta */
+.brand-logo-circle {
+    border-radius: 50%;
+    border: 2px solid #2e7d32;
+    padding: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+/* Animación sutil si pasan el ratón sobre el logo */
+.brand-logo-circle:hover {
+    transform: rotate(15deg) scale(1.05);
+}
+
+/* Animación sutil si pasan el ratón sobre el logo */
+.brand-logo-circle:hover {
+    transform: rotate(15deg) scale(1.05);
+}
+
+/* ==========================================================================
+   CONFIGURACIÓN ESTÁTICA SIN DESBORDAMIENTO (LOGIN PRO)
+   ========================================================================== */
+
+/* Bloquea por completo el movimiento vertical u horizontal en el login */
+/* Bloquea el movimiento vertical/horizontal y limpia la foto de fondo */
+body.bg-light.d-flex.align-items-center.justify-content-center {
+    height: 100vh !important;
+    overflow: hidden !important; /* Esconde cualquier barra de scroll */
+    position: relative !important;
+    
+    /* 🌟 QUITA LA IMAGEN DE FONDO Y DEJA UN GRIS CLARO LIMPIO */
+    background-image: none !important; 
+    background-color: #f4f6f4 !important; /* Mismo gris verdoso suave de tu marca */
+}
+
+
+/* Regla para fijar las imágenes y evitar que alteren el tamaño de la ventana */
+/* Regla para fijar las imágenes con un tamaño más grande y proporcional */
+/* Regla para fijar las imágenes con un tamaño más grande y proporcional */
+.img-decorativa-login {
+    position: fixed !important;
+    pointer-events: none !important;
+    max-height: 75vh !important; /* Mantenemos un excelente tamaño visual */
+    width: auto !important;
+    object-fit: contain !important;
+    z-index: 1 !important;
+}
+
+/* 🌵 Cactus de la izquierda: Completamente anclado al piso */
+/* 🌵 Cactus de la izquierda: Forzado a bajar para absorber el espacio invisible */
+.decorativa-izq {
+    bottom: -12% !important; /* Un valor negativo empuja la maceta hacia abajo del borde */
+    left: 2% !important;   
+}
+
+
+/* 🌿 Planta colgante de la derecha: Completamente anclada al techo */
+.decorativa-der {
+    top: -12% !important;    /* Cero separación con el techo de la ventana */
+    right: 2% !important; /* La acercamos un poquito más al extremo derecho */
+}
+
+
+/* ==========================================================================
+   MANCHAS DE ACUARELA SUELTAS PARA EL FONDO DEL LOGIN (ILALÓ SUCULENTAS)
+   ========================================================================== */
+
+/* Regla base para las tres manchas abstractas de fondo */
+.mancha-fondo-login {
+    position: fixed !important;
+    pointer-events: none !important; /* El ratón las ignora por completo */
+    filter: blur(45px) !important;   /* Difumina los bordes estilo acuarela */
+    z-index: 0 !important;           /* Van detrás de las plantas y de la tarjeta */
+    opacity: 0.55 !important;        /* Transparencia sutil y elegante */
+    animation: movimientoMancha 10s ease-in-out infinite; /* Animación sutil */
+}
+
+/* 🟢 Mancha 1: Forma orgánica verde pastel arriba a la izquierda */
+.mancha-uno {
+    width: 280px;
+    height: 260px;
+    background-color: #c5e1a5 !important; /* Verde oliva claro */
+    top: 15% !important;
+    left: 12% !important;
+    border-radius: 43% 57% 38% 62% / 55% 44% 56% 45% !important;
+}
+
+/* 🟢 Mancha 2: Forma orgánica verde suave abajo a la derecha */
+.mancha-dos {
+    width: 320px;
+    height: 300px;
+    background-color: #a5d6a7 !important; /* Verde botánico suave */
+    bottom: 12% !important;
+    right: 15% !important;
+    border-radius: 60% 40% 58% 42% / 40% 50% 50% 60% !important;
+    animation-delay: -2s; /* Descompasa el movimiento para mayor naturalidad */
+}
+
+/* 🟢 Mancha 3: Pequeño destello amarillo-verdoso cerca del centro-izq */
+.mancha-tres {
+    width: 200px;
+    height: 200px;
+    background-color: #e6ee9c !important; /* Verde lima tierno */
+    bottom: 25% !important;
+    left: 22% !important;
+    border-radius: 30% 70% 40% 60% / 50% 30% 70% 50% !important;
+    animation-delay: -5s;
+}
+
+/* Animación de respiración orgánica continua */
+@keyframes movimientoMancha {
+    0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+    50% { transform: translateY(-12px) scale(1.04) rotate(5deg); }
+}
+
+/* Asegura las capas correctas para que nada tape a la tarjeta */
+body.bg-light {
+    position: relative !important;
+    background-color: #f4f6f4 !important; /* Fondo gris tierno */
+}
+
+.img-decorativa-login {
+    z-index: 1 !important; /* Por encima de las manchas */
+}
+
+.card.shadow {
+    position: relative !important;
+    z-index: 2 !important; /* Por encima de todo */
+}
+
+/* Cajas de texto más delgadas para el formulario de registro */
+.login-input-compact {
+    padding: 6px 12px !important; /* Reduce el grosor interno de las cajas */
+    border-radius: 10px !important;
+    font-size: 0.85rem !important;
+    border: 1px solid #ced4da !important;
+}
+.login-input-compact:focus {
+    border-color: #2e7d32 !important;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important;
+    outline: none;
+}

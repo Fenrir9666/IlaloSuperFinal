@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conoce la historia y misión de Ilaló Suculentas.">
+
+  <title>Nosotros - Ilaló Suculentas</title>
+
+  <link rel="icon" th:href="@{/img/logoSucu.png}" type="image/png">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" th:href="@{/estilos.css}">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+   <!-- !HEADER -->
+  <!-- Inyección automática del menú maestro desde index -->
+<header th:replace="~{index :: header-nav}"></header>
+
+  <!-- CONTENIDO -->
+  <section class="container my-5">
+
+    <h1 class="text-center mb-4">Sobre Nosotros 🌵</h1>
+
+    <p class="lead text-center col-md-9 mx-auto">
+      En <strong>Ilaló Suculentas</strong> trabajamos para llevar un pedacito
+      de naturaleza a tu hogar. Amamos las plantas y queremos que aprendas
+      a cuidarlas correctamente.
+    </p>
+
+    <div class="row mt-5">
+
+      <!-- MISIÓN -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">🌱 Nuestra Misión</h3>
+
+          <p>
+            Ofrecer suculentas y cactus saludables, hermosos y accesibles,
+            acompañados de asesoría y tips para que vivan mucho tiempo.
+          </p>
+
+        </div>
+      </div>
+
+      <!-- VISIÓN -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-4">
+
+          <h3 class="h5">🌎 Nuestra Visión</h3>
+
+          <p>
+            Ser un emprendimiento reconocido en Quito y Ecuador,
+            ayudando a más personas a decorar con plantas y aprender a cuidarlas.
+          </p>
+
+        </div>
+      </div>
+
+      <!-- UBICACIÓN -->
+      <div class="col-md-12 mb-4">
+        <div class="card shadow-sm h-100 p-4 text-center">
+
+          <h3 class="h5">📍 Ubicación</h3>
+
+          <p>
+            Nos encontramos en la Calle de los Guangales, sector Ilaló. <br>
+            ¡Ven a conocer nuestras suculentas!
+          </p>
+
+          <!-- MAPA -->
+          <div class="contenedor-mapa mt-3 shadow-sm">
+
+            <iframe
+              width="100%"
+              height="450"
+              style="border:0;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=-0.291099,-78.402844&hl=es&z=18&output=embed">
+            </iframe>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BOTÓN WHATSAPP -->
+  <a href="https://wa.me/593979084293"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="btn btn-success position-fixed bottom-0 end-0 m-4 shadow-lg rounded-circle p-3">
+
+    💬
+
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white pt-5 pb-4">
+
+    <div class="container text-center text-md-start">
+
+      <div class="row">
+
+        <!-- INFO -->
+        <div class="col-md-4 mx-auto mt-3">
+
+          <h5 class="text-uppercase mb-4 fw-bold text-success">
+            Ilaló Suculentas
+          </h5>
+
+          <p>
+            Llevando un pedacito de naturaleza a tu hogar con suculentas y cactus saludables.
+          </p>
+
+        </div>
+
+        <!-- LINKS -->
+        <div class="col-md-4 mx-auto mt-3">
+
+          <h5 class="text-uppercase mb-4 fw-bold text-success">
+            Explora
+          </h5>
+
+          <p>
+            <a th:href="@{/catalogo}" class="text-white text-decoration-none">
+              Catálogo
+            </a>
+          </p>
+
+          <p>
+            <a th:href="@{/cuidados}" class="text-white text-decoration-none">
+              Cuidados
+            </a>
+          </p>
+
+          <p>
+            <a th:href="@{/contacto}" class="text-white text-decoration-none">
+              Contacto
+            </a>
+          </p>
+
+        </div>
+
+        <!-- UBICACIÓN -->
+        <div class="col-md-4 mx-auto mt-3">
+
+          <h5 class="text-uppercase mb-4 fw-bold text-success">
+            Ubicación
+          </h5>
+
+          <p>📍 La Merced - Quito, Ecuador</p>
+          <p>🕒 Lunes a Sábado: 09:00 - 18:00</p>
+
+        </div>
+
+      </div>
+
+      <hr class="mb-4">
+
+      <!-- COPYRIGHT -->
+      <div class="row">
+        <div class="col text-center">
+
+          <p class="mb-0">
+            © 2026 Todos los derechos reservados por
+            <strong class="text-success">Alex Vilatuña</strong>
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Vinculación del archivo de lógica interactiva JS -->
+<script th:src="@{/script.js}"></script>
+
+</body>
+</html>
