@@ -17,9 +17,15 @@
   </div>
 
   <!-- Mensaje si el carrito está vacío -->
-  <div th:if="${#lists.isEmpty(detalles)}" class="alert alert-info text-center py-4">
+  <!-- Mensaje si el carrito está vacío -->
+  <div th:if="${#lists.isEmpty(detalles)}" class="alert alert-info text-center py-4 shadow-sm">
     <i class="bi bi-cart-x fs-1"></i>
-    <p class="mt-2 mb-0">Tu carrito está vacío. ¡Ve al catálogo y añade unas hermosas plantas!</p>
+    <p class="mt-2 mb-3">Tu carrito está vacío. ¡Ve al catálogo y añade unas hermosas plantas!</p>
+    
+    <!-- 📜 Botón directo al historial -->
+    <a th:href="@{/pedido/historial}" class="btn btn-sm btn-light fw-medium border text-decoration-none">
+       Ver mi Historial de Compras
+    </a>
   </div>
 
   <!-- Tabla del carrito -->

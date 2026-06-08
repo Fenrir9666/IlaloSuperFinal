@@ -1,47 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Historial de Compras</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Historial de Compras</title>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
-<div class="container mt-4">
-    <h2 class="mb-4">Historial de Compras</h2>
 
-    <!-- Si el historial está vacío -->
-    <div th:if="${#lists.isEmpty(historial)}" class="alert alert-info">
-        No tienes compras registradas todavía.
-    </div>
+  <header>
+    <h1>Mi Historial de Compras</h1>
+    <a th:href="@{/catalogo}">Ir al Catálogo</a>
+  </header>
 
-    <!-- Tabla de pedidos -->
-    <table th:if="${!#lists.isEmpty(historial)}" class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>ID Pedido</th>
-                <th>Fecha</th>
-                <th>Total</th>
-                <th>Estado</th>
-                <th>Ticket</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="pedido : ${historial}">
-                <td th:text="${pedido.id}"></td>
-                <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></td>
-                <td th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}"></td>
-                <td th:text="${pedido.estado}"></td>
-                <td>
-                    <a th:href="@{/pedido/pdf/{id}(id=${pedido.id})}" 
-                       class="btn btn-sm btn-primary">
-                        Descargar PDF
-                    </a>
-                </td>
-            </tr>
-        </tbody>
+  <!-- ✅ MENSAJE SI EL HISTORIAL ESTÁ VACÍO -->
+  <section th:if="${#lists.isEmpty(historial)}">
+    <h2>¡Tu historial está vacío!</h2>
+    <p>Aún no has realizado ninguna compra en nuestra tienda.</p>
+    <p>¡Anímate a comprar tu primera suculenta y dale vida a tu hogar! 🌵✨</p>
+    <a th:href="@{/catalogo}">Ver Hermosas Plantas</a>
+  </section>
+
+  <!-- ✅ TABLA SI EL HISTORIAL TIENE COMPRAS -->
+  <section th:unless="${#lists.isEmpty(historial)}">
+    <table>
+      <thead>
+        <tr>
+          <th>Nº de Pedido</th>
+          <th>Fecha y Hora</th>
+          <th>Total Pagado</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="pedido : ${historial}">
+          <td th:text="'#' + ${pedido.id}">#1</td>
+          <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">01/01/2026 10:00</td>
+          <td th:text="'$' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">$0.00</td>
+          <td th:text="${pedido.estado}">Estado</td>
+          <td>
+            <a th:href="@{/pedido/pdf/{id}(id=${pedido.id})}" th:if="${pedido.estado == 'Procesado'}">
+              Descargar Ticket PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </section>
 
-    <a th:href="@{/}" class="btn btn-secondary mt-3">Volver al inicio</a>
-</div>
+  <footer>
+    <a th:href="@{/}">Volver al Inicio</a>
+  </footer>
+
 </body>
 </html>

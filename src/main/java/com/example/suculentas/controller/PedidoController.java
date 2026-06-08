@@ -55,19 +55,24 @@ public class PedidoController {
     }
 
     // 3. Se activa al pulsar "Confirmar Pago". Modifica el estado en la BD y refresca la misma pantalla
-    @PostMapping("/confirmar-pago/{id}")
-    public String confirmarPago(@PathVariable Long id) {
+        @PostMapping("/confirmar-pago/{id}")
+    public String confirmarPago(@PathVariable Long id, @AuthenticationPrincipal Usuario usuario) { // 👈 Agregamos el usuario aquí
         Pedido pedido = pedidoService.obtenerPorId(id);
         
-        // Cambia el estado a "Procesado" en la base de datos
+        // 1. Cambia el estado a "Procesado" en la base de datos
         pedidoService.confirmarPedido(pedido);
         
-        // Genera el ticket PDF con los datos actualizados
+        // 2. Genera el ticket PDF definitivo
         pdfService.generarTicket(pedido);
 
-        // Redirecciona de vuelta al visor GET para que el usuario vea el cambio reflejado al instante
+        // 3. 🛒 ¡LA LÍNEA MÁGICA! Buscamos el carrito activo del usuario y lo vaciamos
+        Carrito carrito = carritoService.obtenerCarritoActivo(usuario);
+        carritoService.vaciarCarrito(carrito);
+
+        // Redirecciona de vuelta a la pantalla de confirmación
         return "redirect:/pedido/confirmar/" + id;
     }
+
 
     // Ver historial de pedidos
     @GetMapping("/historial")
