@@ -120,29 +120,35 @@
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Envíanos un mensaje</h2>
-    <form th:action="@{/contacto}" th:object="${contacto}" method="post" class="col-md-8 mx-auto">
+         <form th:action="@{/contacto}" th:object="${contacto}" method="post" class="col-md-8 mx-auto">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" th:field="*{nombre}" class="form-control" required>
+            <input type="text" th:field="*{nombre}" class="form-control" th:errorclass="is-invalid" id="nombre">
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: #d32f2f; font-size: 0.85rem; font-weight: bold; margin-top: 5px;"></div>
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" th:field="*{email}" class="form-control" required>
+            <input type="text" th:field="*{email}" class="form-control" th:errorclass="is-invalid" id="email">
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: #d32f2f; font-size: 0.85rem; font-weight: bold; margin-top: 5px;"></div>
         </div>
 
         <div class="mb-3">
             <label for="asunto" class="form-label">Asunto</label>
-            <input type="text" th:field="*{asunto}" class="form-control">
+            <input type="text" th:field="*{asunto}" class="form-control" th:errorclass="is-invalid" id="asunto">
+            <div th:if="${#fields.hasErrors('asunto')}" th:errors="*{asunto}" style="color: #d32f2f; font-size: 0.85rem; font-weight: bold; margin-top: 5px;"></div>
         </div>
 
         <div class="mb-3">
             <label for="mensaje" class="form-label">Mensaje</label>
-            <textarea th:field="*{mensaje}" class="form-control" rows="4" required></textarea>
+            <textarea th:field="*{mensaje}" class="form-control" rows="4" th:errorclass="is-invalid" id="mensaje"></textarea>
+            <div th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}" style="color: #d32f2f; font-size: 0.85rem; font-weight: bold; margin-top: 5px;"></div>
         </div>
 
         <button type="submit" class="btn btn-success w-100">Enviar mensaje</button>
     </form>
+
+
 
     <!-- Reemplaza la línea 147 por esto: -->
 <div th:if="${mensajeExito}" class="alerta-flotante">

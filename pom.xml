@@ -94,6 +94,15 @@
 
 </dependency>
 
+<!-- 🌟 Librería obligatoria para que funcionen las validaciones pro -->
+<!-- 🌟 Cambia tu dependencia de validación vieja por esta exacta -->
+<!-- 🌟 Librería obligatoria para que funcionen las validaciones pro -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+
+
 
 
     </dependencies>

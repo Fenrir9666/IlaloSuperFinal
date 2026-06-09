@@ -9,27 +9,45 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.Email; // 👈 Importación para validar correos
+import jakarta.validation.constraints.NotBlank; // 👈 Importación para evitar textos vacíos
+import jakarta.validation.constraints.Size; // 👈 Importación para controlar tamaños
 
 @Entity
-@Table(name = "contacto") // <-- Agrega esta línea para forzar el nombre en singular
+@Table(name = "contacto") 
 public class Contacto {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Candado para el Nombre
+    @NotBlank(message = "El nombre es obligatorio.")
+    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres.")
     private String nombre;
+
+    // Candado para el Email
+    @NotBlank(message = "El correo electrónico es obligatorio.")
+    @Email(message = "Por favor, introduce un correo electrónico válido.")
     private String email;
+
+    // Candado para el Asunto
+    @NotBlank(message = "El asunto es obligatorio.")
+    @Size(min = 5, max = 100, message = "El asunto debe tener al menos 5 caracteres.")
     private String asunto;
+
+    // Candado para el Mensaje
+    @NotBlank(message = "El mensaje no puede estar vacío.")
+    @Size(min = 10, max = 500, message = "El mensaje debe tener entre 10 y 500 caracteres.")
     private String mensaje;
+
     private LocalDateTime fechaEnvio = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    // 🔹 Getters y Setters
+    // 🔹 Getters y Setters (Se mantienen exactamente iguales a los tuyos)
     public Long getId() {
         return id;
     }
