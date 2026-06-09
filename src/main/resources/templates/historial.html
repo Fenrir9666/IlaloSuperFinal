@@ -1,57 +1,67 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Historial de Compras</title>
-  <link rel="stylesheet" th:href="@{/css/estilos.css}">
+  <title>Mi Historial de compras</title>
+  <!-- Conexión a tus estilos ricos locales -->
+  <link rel="stylesheet" th:href="@{/estilos.css}">
 </head>
 <body>
 
-  <header>
-    <h1>Mi Historial de Compras</h1>
-    <a th:href="@{/catalogo}">Ir al Catálogo</a>
-  </header>
+    <div class="historial-box">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h1 style="color: var(--verde-oscuro); font-weight: 800; margin: 0;">📜 Mi Historial de Compras</h1>
+            <a th:href="@{/catalogo}" class="btn-filtro" style="text-decoration: none;">Ir al Catálogo</a>
+        </div>
 
-  <!-- ✅ MENSAJE SI EL HISTORIAL ESTÁ VACÍO -->
-  <section th:if="${#lists.isEmpty(historial)}">
-    <h2>¡Tu historial está vacío!</h2>
-    <p>Aún no has realizado ninguna compra en nuestra tienda.</p>
-    <p>¡Anímate a comprar tu primera suculenta y dale vida a tu hogar! 🌵✨</p>
-    <a th:href="@{/catalogo}">Ver Hermosas Plantas</a>
-  </section>
+        <!-- ✅ MENSAJE SI EL HISTORIAL ESTÁ VACÍO -->
+        <div th:if="${#lists.isEmpty(historial)}" style="text-align: center; padding: 40px 20px;">
+            <h3 style="color: #666; margin-bottom: 10px;">¡Tu historial está vacío!</h3>
+            <p style="color: #888; margin-bottom: 20px;">Aún no has realizado ninguna compra en nuestra tienda.</p>
+            <p style="font-weight: 600; color: var(--verde-oscuro); margin-bottom: 25px;">¡Anímate a comprar tu primera suculenta y dale vida a tu hogar! 🌵✨</p>
+            <a th:href="@{/catalogo}" class="btn-pago-exito" style="text-decoration: none; display: inline-block;">Ver Hermosas Plantas</a>
+        </div>
 
-  <!-- ✅ TABLA SI EL HISTORIAL TIENE COMPRAS -->
-  <section th:unless="${#lists.isEmpty(historial)}">
-    <table>
-      <thead>
-        <tr>
-          <th>Nº de Pedido</th>
-          <th>Fecha y Hora</th>
-          <th>Total Pagado</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="pedido : ${historial}">
-          <td th:text="'#' + ${pedido.id}">#1</td>
-          <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">01/01/2026 10:00</td>
-          <td th:text="'$' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">$0.00</td>
-          <td th:text="${pedido.estado}">Estado</td>
-          <td>
-            <a th:href="@{/pedido/pdf/{id}(id=${pedido.id})}" th:if="${pedido.estado == 'Procesado'}">
-              Descargar Ticket PDF
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+        <!-- ✅ TABLA SI EL HISTORIAL TIENE COMPRAS -->
+        <div th:unless="${#lists.isEmpty(historial)}" style="overflow-x: auto;">
+            <table class="table-historial">
+                <thead>
+                    <tr>
+                        <th>Nº de Pedido</th>
+                        <th>Fecha y Hora</th>
+                        <th style="text-align: right;">Total Pagado</th>
+                        <th style="text-align: center;">Estado</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pedido : ${historial}">
+                        <td style="font-weight: bold;" th:text="'#' + ${pedido.id}">#1</td>
+                        <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">01/01/2026 10:00</td>
+                        <td style="text-align: right; font-weight: 600; color: var(--verde-principal);" th:text="'$' + ${#numbers.formatDecimal(pedido.total + 15, 1, 2)}">$0.00</td>
+                        <td style="text-align: center;">
+                            <span th:text="${pedido.estado}" 
+                                  th:class="${pedido.estado == 'Procesado' ? 'badge-procesado' : 'badge-pendiente'}">
+                                Estado
+                            </span>
+                        </td>
+                        <td style="text-align: center;">
+                            <a th:href="@{/pedido/pdf/{id}(id=${pedido.id})}" class="btn-pdf-descarga" th:if="${pedido.estado == 'Procesado'}">
+                                Descargar Ticket
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-  <footer>
-    <a th:href="@{/}">Volver al Inicio</a>
-  </footer>
+        <div style="margin-top: 30px;" class="links-navegacion">
+            <a th:href="@{/}">Volver al Inicio</a>
+        </div>
+        
+    </div>
 
 </body>
 </html>

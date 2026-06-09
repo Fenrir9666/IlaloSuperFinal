@@ -144,7 +144,11 @@
         <button type="submit" class="btn btn-success w-100">Enviar mensaje</button>
     </form>
 
-    <p th:if="${mensajeExito}" class="text-center text-success mt-3" th:text="${mensajeExito}"></p>
+    <!-- Reemplaza la línea 147 por esto: -->
+<div th:if="${mensajeExito}" class="alerta-flotante">
+    <span th:text="${mensajeExito}">¡Tu mensaje ha sido enviado con éxito!</span>
+</div>
+
 </div>
 
 

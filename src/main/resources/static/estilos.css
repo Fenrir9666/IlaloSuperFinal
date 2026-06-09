@@ -753,3 +753,260 @@ body.bg-light {
     box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important;
     outline: none;
 }
+
+
+/* ==========================================================================
+   DISEÑO DE CONFIRMACIÓN DE PEDIDOS (PRE-FACTURAS)
+   ========================================================================== */
+
+.ticket-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.table-ticket {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.table-ticket th {
+    border-bottom: 2px solid var(--verde-oscuro);
+    padding: 8px;
+    color: var(--verde-oscuro);
+    font-weight: 700;
+}
+
+.table-ticket td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.btn-pago-exito {
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    border: none;
+    padding: 12px 30px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-pago-exito:hover {
+    background-color: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+.links-navegacion a {
+    color: var(--verde-principal);
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+.links-navegacion a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   DISEÑO DE LA PANTALLA DE HISTORIAL DE COMPRAS
+   ========================================================================== */
+
+.historial-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.table-historial {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+.table-historial th {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+    padding: 12px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.table-historial th:first-child { border-top-left-radius: 10px; }
+.table-historial th:last-child { border-top-right-radius: 10px; }
+
+.table-historial td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    color: var(--gris-texto);
+}
+
+/* Filas alternadas para que se lea mejor */
+.table-historial tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Estilos de los badges de estado */
+.badge-pendiente {
+    background-color: #fff3e0;
+    color: #e65100;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid #ffe0b2;
+}
+
+.badge-procesado {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid #c8e6c9;
+}
+
+/* Botón descargar PDF */
+.btn-pdf-descarga {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #d32f2f;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.btn-pdf-descarga:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+
+/* ==========================================================================
+   DISEÑO DE LA PANTALLA DEL CARRITO DE COMPRAS
+   ========================================================================== */
+
+.carrito-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.table-carrito {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+.table-carrito th {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+    padding: 12px;
+    font-weight: 700;
+}
+
+.table-carrito th:first-child { border-top-left-radius: 10px; }
+.table-carrito th:last-child { border-top-right-radius: 10px; }
+
+.table-carrito td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    color: var(--gris-texto);
+}
+
+.btn-eliminar-item {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-eliminar-item:hover {
+    background-color: #b71c1c;
+}
+
+.btn-vaciar-carrito {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-vaciar-carrito:hover {
+    background-color: #f57c00;
+}
+
+.factura-resumen {
+    background-color: rgba(0, 0, 0, 0.02);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px dashed #ccc;
+    margin-top: 25px;
+    max-width: 400px;
+}
+
+
+/* ==========================================================================
+   ALERTA FLOTANTE (TOAST NOTIFICATION)
+   ========================================================================== */
+
+.alerta-flotante {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 16px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid #a5d6a7;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 9999; /* Para que salga por encima de todo */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    /* Animación de entrada */
+    animation: entrarVolando 0.5s ease-out forwards;
+}
+
+@keyframes entrarVolando {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
