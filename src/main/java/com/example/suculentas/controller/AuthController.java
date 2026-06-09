@@ -1,8 +1,9 @@
 package com.example.suculentas.controller;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // ✅ Importación para activar las reglas del modelo
+import org.springframework.stereotype.Controller; // ✅ Importación para atrapar los errores
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import com.example.suculentas.model.Rol;
 import com.example.suculentas.model.Usuario;
 import com.example.suculentas.repository.RolRepository;
 import com.example.suculentas.repository.UsuarioRepository;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class AuthController {
@@ -34,15 +37,28 @@ public class AuthController {
 
     @GetMapping("/registro")
     public String mostrarRegistro(Model model) {
-        model.addAttribute("usuario", new Usuario());
+        if (!model.containsAttribute("usuario")) {
+            model.addAttribute("usuario", new Usuario());
+        }
         return "registro";
     }
 
     @PostMapping("/registro")
-    public String registrar(@ModelAttribute Usuario usuario) {
-        // Verificar si ya existe el email
+    public String registrar(@Valid @ModelAttribute("usuario") Usuario usuario, 
+                            BindingResult bindingResult, 
+                            Model model) {
+        
+        // 🚨 1. SI HAY ERRORES DE CAMPOS VACÍOS O FORMATOS MAL ESCRITOS
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("usuario", usuario);
+            return "registro"; // Regresa al formulario sin borrar lo escrito para que corrija
+        }
+
+        // 🚨 2. VERIFICAR SI YA EXISTE EL EMAIL EN LA BD
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
-            return "redirect:/registro?error=email";
+            model.addAttribute("errorEmail", "Este correo electrónico ya está registrado.");
+            model.addAttribute("usuario", usuario);
+            return "registro";
         }
 
         // Asignar rol por defecto
