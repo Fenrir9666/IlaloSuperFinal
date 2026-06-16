@@ -129,3 +129,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Selecciona todas las imágenes que configuramos como cliqueables
+    const imagenes = document.querySelectorAll(".img-cliqueable");
+    const imagenModalGrande = document.getElementById("imagenModalGrande");
+    
+    // Inicializa el modal usando la librería nativa de Bootstrap 5
+    const miModal = new bootstrap.Modal(document.getElementById("modalImagen"));
+
+    imagenes.forEach(img => {
+        img.addEventListener("click", function () {
+            // Obtiene la URL guardada en el atributo personalizado
+            const urlImagen = this.getAttribute("data-img-grande");
+            
+            // Asigna la URL al contenedor del modal
+            imagenModalGrande.src = urlImagen;
+            
+            // Muestra la ventana emergente en pantalla
+            miModal.show();
+        });
+    });
+});

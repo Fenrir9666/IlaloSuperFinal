@@ -71,147 +71,121 @@
             </div>
 
             <!-- Formulario -->
-            <form th:action="@{/registro}"
-                  th:object="${usuario}"
-                  method="post"
-                  class="w-100 text-start login-header-brand"
-                  style="font-size:0.85rem;">
+           <!-- Formulario -->
+<form th:action="@{/registro}"
+      th:object="${usuario}"
+      method="post"
+      class="w-100 text-start login-header-brand"
+      style="font-size:0.85rem;">
 
-                <!-- Nombre y apellido -->
-                <div class="row g-2 mb-2">
+    <!-- Nombre y apellido -->
+    <div class="row g-2 mb-2">
+        <!-- Nombre -->
+        <div class="col-6">
+            <label for="nombre" class="form-label mb-1 fw-semibold">Nombre</label>
+            <input type="text"
+                   th:field="*{nombre}"
+                   class="form-control form-control-sm login-input-compact"
+                   th:errorclass="is-invalid"
+                   id="nombre"
+                   placeholder="Tu nombre">
+            <div th:if="${#fields.hasErrors('nombre')}"
+                 th:errors="*{nombre}"
+                 class="text-danger small fw-bold mt-1"
+                 style="font-size: 0.75rem; line-height: 1.2;">
+            </div>
+        </div>
 
-                    <!-- Nombre -->
-                    <div class="col-6">
+        <!-- Apellido -->
+        <div class="col-6">
+            <label for="apellido" class="form-label mb-1 fw-semibold">Apellido</label>
+            <input type="text"
+                   th:field="*{apellido}"
+                   class="form-control form-control-sm login-input-compact"
+                   th:errorclass="is-invalid"
+                   id="apellido"
+                   placeholder="Tu apellido">
+            <div th:if="${#fields.hasErrors('apellido')}"
+                 th:errors="*{apellido}"
+                 class="text-danger small fw-bold mt-1"
+                 style="font-size: 0.75rem; line-height: 1.2;">
+            </div>
+        </div>
+    </div>
 
-                        <label for="nombre"
-                               class="form-label mb-1 fw-semibold">
-                            Nombre
-                        </label>
+    <!-- Email -->
+    <div class="mb-2">
+        <label for="email" class="form-label mb-1 fw-semibold">Correo Electrónico</label>
+        <input type="email"
+               th:field="*{email}"
+               class="form-control form-control-sm login-input-compact"
+               th:errorclass="is-invalid"
+               id="email"
+               placeholder="correo@ejemplo.com">
+        <div th:if="${#fields.hasErrors('email')}"
+             th:errors="*{email}"
+             class="text-danger small fw-bold mt-1"
+             style="font-size: 0.75rem; line-height: 1.2;">
+        </div>
+    </div>
 
-                        <input type="text"
-                               th:field="*{nombre}"
-                               class="form-control form-control-sm login-input-compact"
-                               th:errorclass="is-invalid"
-                               id="nombre"
-                               placeholder="Tu nombre">
+    <!-- Contraseña -->
+    <div class="mb-2">
+        <label for="password" class="form-label mb-1 fw-semibold">Contraseña</label>
+        <input type="password"
+               th:field="*{password}"
+               class="form-control form-control-sm login-input-compact"
+               th:errorclass="is-invalid"
+               id="password"
+               placeholder="Mínimo 8 caracteres">
+        <div th:if="${#fields.hasErrors('password')}"
+             th:errors="*{password}"
+             class="text-danger small fw-bold mt-1"
+             style="font-size: 0.75rem; line-height: 1.2;">
+        </div>
+    </div>
 
-                        <div th:if="${#fields.hasErrors('nombre')}"
-                             th:errors="*{nombre}"
-                             class="text-danger small fw-bold mt-1">
-                        </div>
+        <!-- Teléfono -->
+    <div class="mb-2">
+        <label for="telefono" class="form-label mb-1 fw-semibold">Teléfono</label>
+        <input type="text"
+               th:field="*{telefono}"
+               class="form-control form-control-sm login-input-compact"
+               th:errorclass="is-invalid"
+               id="telefono"
+               placeholder="0999999999">
+        <div th:if="${#fields.hasErrors('telefono')}"
+             th:errors="*{telefono}"
+             class="text-danger small fw-bold mt-1"
+             style="font-size: 0.75rem; line-height: 1.2;">
+        </div>
+    </div>
 
-                    </div>
+    <!-- Dirección -->
+    <div class="mb-3">
+        <label for="direccion" class="form-label mb-1 fw-semibold">Dirección de Entrega</label>
+        <input type="text"
+               th:field="*{direccion}"
+               class="form-control form-control-sm login-input-compact"
+               th:errorclass="is-invalid"
+               id="direccion"
+               placeholder="Calle, Ciudad, Sector">
+        <div th:if="${#fields.hasErrors('direccion')}"
+             th:errors="*{direccion}"
+             class="text-danger small fw-bold mt-1"
+             style="font-size: 0.75rem; line-height: 1.2;">
+        </div>
+    </div>
 
-                    <!-- Apellido -->
-                    <div class="col-6">
 
-                        <label for="apellido"
-                               class="form-label mb-1 fw-semibold">
-                            Apellido
-                        </label>
+    <!-- Botón -->
+    <button type="submit"
+            class="btn w-100 text-white fw-bold py-2 mb-2 shadow-sm"
+            style="background-color:#2e7d32; border-radius:10px; font-size:0.9rem;">
+        Registrarse
+    </button>
+</form>
 
-                        <input type="text"
-                               th:field="*{apellido}"
-                               class="form-control form-control-sm login-input-compact"
-                               th:errorclass="is-invalid"
-                               id="apellido"
-                               placeholder="Tu apellido">
-
-                        <div th:if="${#fields.hasErrors('apellido')}"
-                             th:errors="*{apellido}"
-                             class="text-danger small fw-bold mt-1">
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Email -->
-                <div class="mb-2">
-
-                    <label for="email"
-                           class="form-label mb-1 fw-semibold">
-                        Correo Electrónico
-                    </label>
-
-                    <input type="email"
-                           th:field="*{email}"
-                           class="form-control form-control-sm login-input-compact"
-                           th:errorclass="is-invalid"
-                           id="email"
-                           placeholder="correo@ejemplo.com">
-
-                    <div th:if="${#fields.hasErrors('email')}"
-                         th:errors="*{email}"
-                         class="text-danger small fw-bold mt-1">
-                    </div>
-
-                </div>
-
-                <!-- Contraseña -->
-                <div class="mb-2">
-
-                    <label for="password"
-                           class="form-label mb-1 fw-semibold">
-                        Contraseña
-                    </label>
-
-                    <input type="password"
-                           th:field="*{password}"
-                           class="form-control form-control-sm login-input-compact"
-                           th:errorclass="is-invalid"
-                           id="password"
-                           placeholder="Mínimo 6 caracteres">
-
-                    <div th:if="${#fields.hasErrors('password')}"
-                         th:errors="*{password}"
-                         class="text-danger small fw-bold mt-1">
-                    </div>
-
-                </div>
-
-                <!-- Teléfono -->
-                <div class="mb-2">
-
-                    <label for="telefono"
-                           class="form-label mb-1 fw-semibold">
-                        Teléfono
-                    </label>
-
-                    <input type="text"
-                           th:field="*{telefono}"
-                           class="form-control form-control-sm login-input-compact"
-                           id="telefono"
-                           placeholder="0999999999">
-
-                </div>
-
-                <!-- Dirección -->
-                <div class="mb-3">
-
-                    <label for="direccion"
-                           class="form-label mb-1 fw-semibold">
-                        Dirección de Entrega
-                    </label>
-
-                    <input type="text"
-                           th:field="*{direccion}"
-                           class="form-control form-control-sm login-input-compact"
-                           id="direccion"
-                           placeholder="Calle, Ciudad, Sector">
-
-                </div>
-
-                <!-- Botón -->
-                <button type="submit"
-                        class="btn w-100 text-white fw-bold py-2 mb-2 shadow-sm"
-                        style="background-color:#2e7d32; border-radius:10px; font-size:0.9rem;">
-
-                    Registrarse
-
-                </button>
-
-            </form>
 
             <!-- Ir al login -->
             <div class="text-center border-top pt-3"

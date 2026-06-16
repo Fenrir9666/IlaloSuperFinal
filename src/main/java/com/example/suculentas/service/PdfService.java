@@ -66,13 +66,13 @@ public class PdfService {
             document.add(tabla);
             document.add(new Paragraph(" "));
 
-            // 💰 Totales
+            //  Totales
             document.add(new Paragraph("Manejo y Gestión de Envío: $15.00"));
             document.add(new Paragraph("Total a Pagar: $" + pedido.getTotal(),
                     FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
             document.add(new Paragraph(" "));
 
-            // 🙏 Mensaje final
+            //  Mensaje final
             Paragraph mensaje = new Paragraph("¡Gracias por tu compra! Presenta este ticket para retirar tus productos.",
                     FontFactory.getFont(FontFactory.HELVETICA, 11));
             mensaje.setAlignment(Element.ALIGN_CENTER);
